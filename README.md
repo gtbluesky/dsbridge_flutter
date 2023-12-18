@@ -108,7 +108,7 @@ To use dsBridge in your own project:
         alert(v);
       })
    
-      //Register JavaScript API for Native
+      //Register JavaScript API for Dart
        dsBridge.register('addValue',function(l,r){
            return l+r;
        })
@@ -147,11 +147,11 @@ Namespaces can help you better manage your APIs, which is very useful in hybrid 
 
 ## Debug mode
 
-In debug mode, some errors will be prompted by a popup dialog , and the exception caused by the native APIs will not be captured to expose problems.
+In debug mode, some errors will be prompted by a popup dialog , and the exception caused by the dart APIs will not be captured to expose problems.
 
 ## Progress Callback
 
-Normally, when a API is called to end, it returns a result, which corresponds one by one. But sometimes a call need to repeatedly return multipule times,  Suppose that on the Native side, there is a API to download the file, in the process of downloading, it will send the progress information to JavaScript many times, then JavaScript will display the progress information on the H5 page. Oh...You will find it is difficult to achieve this function. Fortunately, DSBridge supports **Progress Callback**. You can be very simple and convenient to implement a call that needs to be returned many times. Here's an example of a countdown：
+Normally, when a API is called to end, it returns a result, which corresponds one by one. But sometimes a call need to repeatedly return multiple times,  Suppose that on the Flutter side, there is a API to download the file, in the process of downloading, it will send the progress information to JavaScript many times, then JavaScript will display the progress information on the H5 page. Oh...You will find it is difficult to achieve this function. Fortunately, DSBridge supports **Progress Callback**. You can be very simple and convenient to implement a call that needs to be returned many times. Here's an example of a countdown：
 
 In Dart
 
@@ -300,7 +300,7 @@ Call Dart api synchronously and asynchronously。
 
 ##### `dsBridge.registerAsyn(methodName|namespace,function|asyApiObject)`
 
-Register JavaScript synchronous and asynchronous  API for Native invocation. There are two types of invocation
+Register JavaScript synchronous and asynchronous  API for Dart invocation. There are two types of invocation
 
 1. Just register a method. For example:
 
