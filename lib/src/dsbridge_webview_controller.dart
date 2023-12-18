@@ -62,29 +62,31 @@ class DWebViewController extends WebViewController {
     _setJavaScriptAlertCallback();
     _setJavaScriptConfirmCallback();
     _setJavaScriptPromptCallback();
-    platform.setOnJavaScriptAlertDialogCallback((message) async {
+    setOnJavaScriptAlertDialog((request) async {
       // if (!_alertBoxBlock) {
       //   return;
       // }
-      javaScriptAlertCallback?.call(message);
+      javaScriptAlertCallback?.call(request.message);
     });
 
-    platform.setOnJavaScriptConfirmDialogCallback((message) async {
+    setOnJavaScriptConfirmDialog((request) async {
       // if (!_alertBoxBlock) {
       //   return true;
       // }
-      return javaScriptConfirmCallback?.call(message) ?? Future.value(true);
+      return javaScriptConfirmCallback?.call(request.message) ??
+          Future.value(false);
     });
 
-    platform
-        .setOnJavaScriptTextInputDialogCallback((message, defaultText) async {
-      if (message.startsWith(_prefix)) {
-        return _call(message.substring(_prefix.length), defaultText);
+    setOnJavaScriptTextInputDialog((request) async {
+      if (request.message.startsWith(_prefix)) {
+        return _call(
+            request.message.substring(_prefix.length), request.defaultText);
       }
       // if (!_alertBoxBlock) {
       //   return '';
       // }
-      return javaScriptPromptCallback?.call(message, defaultText) ??
+      return javaScriptPromptCallback?.call(
+              request.message, request.defaultText) ??
           Future.value('');
     });
   }
@@ -181,10 +183,9 @@ class DWebViewController extends WebViewController {
     javaScriptConfirmCallback = (message) async {
       final context = _context;
       if (context == null) {
-        return true;
+        return false;
       }
-      final completer = Completer<bool>();
-      showDialog(
+      final result = await showDialog<bool>(
           context: context,
           barrierDismissible: false,
           builder: (context) {
@@ -193,22 +194,20 @@ class DWebViewController extends WebViewController {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    completer.complete(true);
+                    Navigator.of(context).pop(true);
                   },
                   child: const Text('OK'),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    completer.complete(false);
+                    Navigator.of(context).pop(false);
                   },
                   child: const Text('Cancel'),
                 )
               ],
             );
           });
-      return completer.future;
+      return result ?? false;
     };
   }
 
@@ -218,10 +217,9 @@ class DWebViewController extends WebViewController {
       if (context == null) {
         return '';
       }
-      final completer = Completer<String>();
       final textEditingController = TextEditingController();
       textEditingController.text = defaultText ?? '';
-      showDialog(
+      final result = await showDialog<String>(
           context: context,
           barrierDismissible: false,
           builder: (context) {
@@ -233,22 +231,20 @@ class DWebViewController extends WebViewController {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    completer.complete(textEditingController.text);
+                    Navigator.of(context).pop(textEditingController.text);
                   },
                   child: const Text('OK'),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    completer.complete('');
+                    Navigator.of(context).pop('');
                   },
                   child: const Text('Cancel'),
                 )
               ],
             );
           });
-      return completer.future;
+      return result ?? '';
     };
   }
 

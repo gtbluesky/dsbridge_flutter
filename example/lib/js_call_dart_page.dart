@@ -6,14 +6,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
 
-class JsCallNativePage extends StatefulWidget {
-  const JsCallNativePage({super.key});
+class JsCallDartPage extends StatefulWidget {
+  const JsCallDartPage({super.key});
 
   @override
-  State<JsCallNativePage> createState() => _JsCallNativePageState();
+  State<JsCallDartPage> createState() => _JsCallDartPageState();
 }
 
-class _JsCallNativePageState extends State<JsCallNativePage> {
+class _JsCallDartPageState extends State<JsCallDartPage> {
   late final DWebViewController _controller;
 
   @override
@@ -37,17 +37,9 @@ class _JsCallNativePageState extends State<JsCallNativePage> {
 
     controller
       ..setBackgroundColor(Colors.white)
-      ..loadFlutterAsset('assets/js-call-native.html');
-
-    // #docregion platform_features
-    // if (controller.platform is AndroidWebViewController) {
-    //   AndroidWebViewController.enableDebugging(true);
-    //   (controller.platform as AndroidWebViewController)
-    //       .setMediaPlaybackRequiresUserGesture(false);
-    // }
-    // #enddocregion platform_features
-    controller.addJavaScriptObject(JsApi(), null);
-    controller.addJavaScriptObject(JsEchoApi(), 'echo');
+      ..loadFlutterAsset('assets/js-call-dart.html')
+      ..addJavaScriptObject(JsApi(), null)
+      ..addJavaScriptObject(JsEchoApi(), 'echo');
     _controller = controller;
   }
 
@@ -56,7 +48,7 @@ class _JsCallNativePageState extends State<JsCallNativePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('JavaScript call Native'),
+        title: const Text('JavaScript call Dart'),
       ),
       body: DWebViewWidget(controller: _controller),
       // floatingActionButton: favoriteButton(),

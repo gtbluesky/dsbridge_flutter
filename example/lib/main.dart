@@ -1,5 +1,5 @@
-import 'package:example/js_call_native_page.dart';
-import 'package:example/native_call_js_page.dart';
+import 'package:example/js_call_dart_page.dart';
+import 'package:example/dart_call_js_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,18 +41,18 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const NativeCallJsPage()));
+                        builder: (context) => const DartCallJsPage()));
               },
-              child: const Text('Native call JavaScript'),
+              child: const Text('Dart call JavaScript'),
             ),
             FilledButton(
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const JsCallNativePage()));
+                        builder: (context) => const JsCallDartPage()));
               },
-              child: const Text('JavaScript call Native'),
+              child: const Text('JavaScript call Dart'),
             ),
           ],
         ),

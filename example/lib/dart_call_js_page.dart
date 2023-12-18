@@ -6,14 +6,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
 
-class NativeCallJsPage extends StatefulWidget {
-  const NativeCallJsPage({super.key});
+class DartCallJsPage extends StatefulWidget {
+  const DartCallJsPage({super.key});
 
   @override
-  State<NativeCallJsPage> createState() => _NativeCallJsPageState();
+  State<DartCallJsPage> createState() => _DartCallJsPageState();
 }
 
-class _NativeCallJsPageState extends State<NativeCallJsPage> {
+class _DartCallJsPageState extends State<DartCallJsPage> {
   late final DWebViewController _controller;
 
   @override
@@ -37,7 +37,7 @@ class _NativeCallJsPageState extends State<NativeCallJsPage> {
 
     controller
       ..setBackgroundColor(Colors.white)
-      ..loadFlutterAsset('assets/native-call-js.html');
+      ..loadFlutterAsset('assets/dart-call-js.html');
 
     _controller = controller;
   }
@@ -47,7 +47,7 @@ class _NativeCallJsPageState extends State<NativeCallJsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Native call JavaScript'),
+        title: const Text('Dart call JavaScript'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

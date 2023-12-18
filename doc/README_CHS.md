@@ -2,13 +2,13 @@
 
 ![dsBridge](https://github.com/gtbluesky/dsbridge_flutter/raw/main/doc/dsbridge.png)
 [![pub package](https://img.shields.io/pub/v/dsbridge.svg)](https://pub.dev/packages/dsbridge)
-> 三端易用的现代跨平台 JavaScript bridge， 通过它，你可以在 JavaScript 和 Dart 之间同步或异步的调用彼此的函数.
+> 三端易用的现代跨平台 JavaScript bridge，通过它你可以在 JavaScript 和 Flutter 之间同步或异步的调用彼此的函数.
 
 DSBridge-Android：https://github.com/wendux/DSBridge-Android
 
 DSBridge-IOS：https://github.com/wendux/DSBridge-IOS
 
-### 概述
+## 概述
 
 DSBridge for Flutter 完全兼容 Android 和 iOS DSBridge 的 dsbridge.js。
 
@@ -397,4 +397,4 @@ dsBridge.hasNativeMethod('testSyn','asyn') //false
 
 ## 最后
 
-如果你喜欢DSBridge for Flutter, 欢迎点点star和like，以便更多的人知道它, 谢谢 !
+如果你喜欢DSBridge for Flutter，欢迎点点star和like，以便更多的人知道它, 谢谢 !
