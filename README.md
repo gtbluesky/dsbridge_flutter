@@ -333,7 +333,7 @@ Register JavaScript synchronous and asynchronous  API for Dart invocation. There
 
 2. Register a JavaScript API object with supplied namespace. For example:
 
-   **In JavaScript**
+   In JavaScript
 
    ```javascript
    //namespace test for synchronous
@@ -362,7 +362,7 @@ Register JavaScript synchronous and asynchronous  API for Dart invocation. There
    > Because JavaScript does not support function overloading, it is not possible to define asynchronous function and sync function of the same name。
    >
 
-   **In Dart**
+   In Dart
 
    ```dart
    _controller.callHandler('test.test1',

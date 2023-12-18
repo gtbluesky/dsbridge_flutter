@@ -338,7 +338,7 @@ _controller.hasJavaScriptMethod('addValue', (retValue) {
 
 2. 注册一个对象，指定一个命名空间:
 
-   **In JavaScript**
+   In JavaScript
 
    ```javascript
    //namespace test for synchronous calls
@@ -366,7 +366,7 @@ _controller.hasJavaScriptMethod('addValue', (retValue) {
 
    > 因为 JavaScript 并不支持函数重载，所以不能在同一个 JavaScript 对象中定义同名的同步函数和异步函数
 
-   **In Dart**
+   In Dart
 
    ```dart
    _controller.callHandler('test.test1',
