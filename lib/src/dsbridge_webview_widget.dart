@@ -2,10 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter_platform_interface/src/platform_webview_widget.dart';
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
 import 'dsbridge_webview_controller.dart';
 
+// ignore: must_be_immutable
 class DWebViewWidget extends WebViewWidget {
   DWebViewController? _controller;
 

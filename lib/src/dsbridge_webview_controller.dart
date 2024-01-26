@@ -13,6 +13,7 @@ import 'dsbridge_result.dart';
 class DWebViewController extends WebViewController {
   static const String _jsChannel = '_dswk';
   static const String _prefix = '_dsbridge=';
+  // ignore: unused_field
   bool _alertBoxBlock = true;
   final _javaScriptNamespaceInterfaces =
       <String, JavaScriptNamespaceInterface>{};
@@ -62,14 +63,14 @@ class DWebViewController extends WebViewController {
     _setJavaScriptAlertCallback();
     _setJavaScriptConfirmCallback();
     _setJavaScriptPromptCallback();
-    setOnJavaScriptAlertDialog((request) async {
+    platform.setOnJavaScriptAlertDialog((request) async {
       // if (!_alertBoxBlock) {
       //   return;
       // }
       javaScriptAlertCallback?.call(request.message);
     });
 
-    setOnJavaScriptConfirmDialog((request) async {
+    platform.setOnJavaScriptConfirmDialog((request) async {
       // if (!_alertBoxBlock) {
       //   return true;
       // }
@@ -77,7 +78,7 @@ class DWebViewController extends WebViewController {
           Future.value(false);
     });
 
-    setOnJavaScriptTextInputDialog((request) async {
+    platform.setOnJavaScriptTextInputDialog((request) async {
       if (request.message.startsWith(_prefix)) {
         return _call(
             request.message.substring(_prefix.length), request.defaultText);
@@ -271,7 +272,7 @@ class DWebViewController extends WebViewController {
   }
 
   /// remove the javascript object with supplied namespace.
-  void removeJavaScriptObject(String namespace) {
+  void removeJavaScriptObject(String? namespace) {
     namespace ??= '';
     _javaScriptNamespaceInterfaces.remove(namespace);
   }

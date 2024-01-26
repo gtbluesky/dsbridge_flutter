@@ -32,29 +32,13 @@ dependencies:
     sdk: flutter
   dsbridge:
     path: ../
+  webview_flutter: ^4.4.4
   fluttertoast: ^8.2.2
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
-dependency_overrides:
-  webview_flutter_android:
-    git:
-      url: https://github.com/jsharp83/packages
-      path: packages/webview_flutter/webview_flutter_android
-      ref: add-javascript-panel-interface
-  webview_flutter_wkwebview:
-    git:
-      url: https://github.com/jsharp83/packages
-      path: packages/webview_flutter/webview_flutter_wkwebview
-      ref: add-javascript-panel-interface
-  webview_flutter_platform_interface:
-    git:
-      url: https://github.com/jsharp83/packages
-      path: packages/webview_flutter/webview_flutter_platform_interface
-      ref: platform-interface-for-javascript-panel
 
 dev_dependencies:
   flutter_test:

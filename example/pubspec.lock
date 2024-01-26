@@ -139,10 +139,10 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
+      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.8"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -213,41 +213,37 @@ packages:
     source: hosted
     version: "0.3.0"
   webview_flutter:
+    dependency: "direct main"
+    description:
+      name: webview_flutter
+      sha256: "71e1bfaef41016c8d5954291df5e9f8c6172f1f6ff3af01b5656456ddb11f94c"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.4.4"
+  webview_flutter_android:
     dependency: transitive
     description:
-      path: "packages/webview_flutter/webview_flutter"
-      ref: add-javascript-panel-interface
-      resolved-ref: "74d00a935497b013e557a4c513aa4eeebf417c3f"
-      url: "https://github.com/jsharp83/packages"
-    source: git
-    version: "4.5.0"
-  webview_flutter_android:
-    dependency: "direct overridden"
-    description:
-      path: "packages/webview_flutter/webview_flutter_android"
-      ref: add-javascript-panel-interface
-      resolved-ref: "74d00a935497b013e557a4c513aa4eeebf417c3f"
-      url: "https://github.com/jsharp83/packages"
-    source: git
+      name: webview_flutter_android
+      sha256: "4ea3c4e1b8ed590162b15b8a61b41b1ef3ff179a314627c16ce40c086d94b8af"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "3.14.0"
   webview_flutter_platform_interface:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/webview_flutter/webview_flutter_platform_interface"
-      ref: platform-interface-for-javascript-panel
-      resolved-ref: "68bed91b310eb3ea0fd12cf9b4c138e5831ca346"
-      url: "https://github.com/jsharp83/packages"
-    source: git
-    version: "2.9.0"
+      name: webview_flutter_platform_interface
+      sha256: d937581d6e558908d7ae3dc1989c4f87b786891ab47bb9df7de548a151779d8d
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.10.0"
   webview_flutter_wkwebview:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/webview_flutter/webview_flutter_wkwebview"
-      ref: add-javascript-panel-interface
-      resolved-ref: "74d00a935497b013e557a4c513aa4eeebf417c3f"
-      url: "https://github.com/jsharp83/packages"
-    source: git
-    version: "3.10.0"
+      name: webview_flutter_wkwebview
+      sha256: b99ca8d8bae9c6b43d568218691aa537fb0aeae1d7d34eadf112a6aa36d26506
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.11.0"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
-  flutter: ">=3.10.0"
+  dart: ">=3.2.3 <4.0.0"
+  flutter: ">=3.16.6"
