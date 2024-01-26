@@ -37,7 +37,7 @@ DSBridge for Flutter is based on Flutter official [webview_flutter](https://pub.
    ```yml
    dependencies:
      ...
-     dsbridge: x.y.z
+     dsbridge_flutter: x.y.z
    ```
 
 ## Examples

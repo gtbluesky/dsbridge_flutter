@@ -1,4 +1,4 @@
-import 'package:dsbridge/dsbridge.dart';
+import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:webview_flutter/webview_flutter.dart';

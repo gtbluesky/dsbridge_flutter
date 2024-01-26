@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dsbridge:
+  dsbridge_flutter:
     path: ../
   webview_flutter: ^4.4.4
   fluttertoast: ^8.2.2

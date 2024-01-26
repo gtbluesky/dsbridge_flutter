@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dsbridge/dsbridge.dart';
+import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 
 class JsApi extends JavaScriptNamespaceInterface {
   @override

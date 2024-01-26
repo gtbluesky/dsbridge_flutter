@@ -1,6 +1,7 @@
-import 'package:example/js_call_dart_page.dart';
-import 'package:example/dart_call_js_page.dart';
 import 'package:flutter/material.dart';
+
+import 'js_call_dart_page.dart';
+import 'dart_call_js_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,10 +1,11 @@
-import 'package:dsbridge/dsbridge.dart';
-import 'package:example/js_api.dart';
+import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
+
+import 'js_api.dart';
 
 class JsCallDartPage extends StatefulWidget {
   const JsCallDartPage({super.key});

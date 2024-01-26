@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:dsbridge/src/dsbridge_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
+import 'dsbridge_extension.dart';
 import 'dsbridge_js_namespace_interfaces.dart';
 import 'dsbridge_result.dart';
 

@@ -49,7 +49,7 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.6"
-  dsbridge:
+  dsbridge_flutter:
     dependency: "direct main"
     description:
       path: ".."

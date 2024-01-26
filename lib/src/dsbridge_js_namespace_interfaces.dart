@@ -1,4 +1,4 @@
-import 'package:dsbridge/src/dsbridge_extension.dart';
+import 'dsbridge_extension.dart';
 
 abstract class JavaScriptNamespaceInterface {
   var functionMap = <String, Function>{};
