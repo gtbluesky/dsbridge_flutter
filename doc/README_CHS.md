@@ -43,7 +43,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
    ```yml
    dependencies:
      ...
-     dsbridge: x.y.z
+     dsbridge_flutter: x.y.z
    ```
 
 ## 示例
@@ -57,7 +57,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
 1. 新建一个Dart类，实现API
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 
    class JsApi extends JavaScriptNamespaceInterface {
       @override
@@ -83,7 +83,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
 2. 添加API类实例到DWebViewController
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
    ...
    late final DWebViewController _controller;
    ...
@@ -123,7 +123,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
 4. 在 Dart 中调用 JavaScript API
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
    ...
    late final DWebViewController _controller;
    ...

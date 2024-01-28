@@ -51,7 +51,7 @@ To use dsBridge in your own project:
 1. Implement APIs in a Dart class
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 
    class JsApi extends JavaScriptNamespaceInterface {
       @override
@@ -77,7 +77,7 @@ To use dsBridge in your own project:
 2. Add API object to DWebViewController
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
    ...
    late final DWebViewController _controller;
    ...
@@ -117,7 +117,7 @@ To use dsBridge in your own project:
 4. Call JavaScript API in Dart
 
    ```dart
-   import 'package:dsbridge/dsbridge.dart';
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
    ...
    late final DWebViewController _controller;
    ...
