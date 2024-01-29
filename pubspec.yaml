@@ -1,6 +1,6 @@
 name: dsbridge_flutter
 description: A modern cross-platform JavaScript bridge, through which you can invoke each other's functions synchronously or asynchronously between JavaScript and Dart.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/gtbluesky/dsbridge_flutter
 
 environment:

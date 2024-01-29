@@ -1,7 +1,7 @@
 # DSBridge for Flutter
 
 ![dsBridge](https://github.com/gtbluesky/dsbridge_flutter/raw/main/doc/dsbridge.png)
-[![pub package](https://img.shields.io/pub/v/dsbridge.svg)](https://pub.dev/packages/dsbridge)
+[![pub package](https://img.shields.io/pub/v/dsbridge_flutter.svg)](https://pub.dev/packages/dsbridge_flutter)
 >Modern cross-platform JavaScript bridge, through which you can invoke each other's functions synchronously or asynchronously between JavaScript and Flutter applications.
 
 Chinese documentation [中文文档](https://github.com/gtbluesky/dsbridge_flutter/blob/main/doc/README_CHS.md)
