@@ -13,6 +13,7 @@ class JsApi extends JavaScriptNamespaceInterface {
   }
 
   String testSyn(dynamic msg) {
+    print('msg=$msg');
     return "$msg［syn call］";
   }
 

@@ -140,7 +140,7 @@ class DWebViewController extends WebViewController {
       }
     } on NoSuchMethodError {
       _printDebugInfo(
-          'Call failed：The parameter of "$methodName" in Java is invalid.');
+          'Call failed：The parameter of "$methodName" in Dart is invalid.');
     }
     return json.encode(ret);
   }
@@ -161,7 +161,7 @@ class DWebViewController extends WebViewController {
       if (context == null) {
         return;
       }
-      showDialog(
+      await showDialog(
           context: context,
           barrierDismissible: false,
           builder: (context) {
