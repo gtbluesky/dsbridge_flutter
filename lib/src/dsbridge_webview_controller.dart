@@ -251,6 +251,7 @@ class DWebViewController extends WebViewController {
 
   void _printDebugInfo(String error) {
     assert(() {
+      error = error.replaceAll("'", "\\'");
       runJavaScript("alert('DEBUG ERR MSG:\\n$error')");
       return true;
     }());
