@@ -258,13 +258,18 @@ class DWebViewController extends WebViewController {
   }
 
   void _addInternalJavaScriptObject() {
-    addJavaScriptObject(_InnerJavaScriptNamespaceInterface(this), namespace: '_dsb');
+    addJavaScriptObject(
+      _InnerJavaScriptNamespaceInterface(this),
+      namespace: '_dsb',
+    );
   }
 
   /// Add a dart object which implemented the javascript interfaces to dsBridge with namespace.
   /// Remove the object using {@link #removeJavascriptObject(String) removeJavascriptObject(String)}
   void addJavaScriptObject(
-      JavaScriptNamespaceInterface object, {String? namespace}) {
+    JavaScriptNamespaceInterface object, {
+    String? namespace,
+  }) {
     namespace ??= '';
     _javaScriptNamespaceInterfaces[namespace] = object;
   }
