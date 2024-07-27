@@ -9,8 +9,8 @@ abstract class JavaScriptNamespaceInterface {
 
   void register();
 
-  bool registerFunction(Function function) {
-    final name = function.name;
+  bool registerFunction(Function function, {String? functionName}) {
+    final name = functionName ?? function.name;
     if (name.isEmpty) {
       return false;
     }

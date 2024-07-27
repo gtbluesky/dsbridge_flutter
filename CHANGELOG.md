@@ -1,6 +1,12 @@
+## 1.1.0
+
+* Fixes call failure when using the `--obfuscate` option to build.
+* Supports for registering anonymous functions.
+
+
 ## 1.0.3
 
-* Fix an exception when using JavaScript alert.
+* Fixes an exception when using JavaScript alert.
 
 ## 1.0.2
 

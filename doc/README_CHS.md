@@ -18,23 +18,16 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
 
 ## 特性
 
-1. Android、iOS、JavaScript 三端易用，轻量且强大、安全且健壮。
-
-2. 同时支持同步调用和异步调用
-
-3. 支持以类的方式集中统一管理API
-
-4. 支持API命名空间
-
-5. 支持调试模式
-
-6. 支持 API 存在性检测
-
-7. 支持进度回调：一次调用，多次返回
-
-8. 支持 JavaScript 关闭页面事件回调
-
-9. 支持 JavaScript 模态对话框
+1. 支持 `Android`、`iOS`、`HarmonyOS` 三端，覆盖移动全平台
+2. 简单易用、轻量且强大、安全且健壮
+3. 同时支持同步调用和异步调用
+4. 支持以类的方式集中统一管理API
+5. 支持API命名空间
+6. 支持调试模式
+7. 支持 API 存在性检测
+8. 支持进度回调：一次调用，多次返回
+9. 支持 JavaScript 关闭页面事件回调
+10. 支持 JavaScript 模态对话框
 
 ## 安装
 
@@ -78,7 +71,31 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
    }
    ```
 
-   所有Dart APIs必须在register函数中使用registerFunction来注册。
+   - 所有Dart APIs必须在register函数中使用registerFunction来注册
+   - 注意，如果构建应用时使用了 `--obfuscate` 参数对 Dart 代码进行混淆，则需使用`@pragma('vm:entry-point')`对函数进行注解，或者使用 `registerFunction` 的第二个参数`functionName`指定函数名。
+   ```dart
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
+
+   class JsApi extends JavaScriptNamespaceInterface {
+      @override
+      void register() {
+         registerFunction(testSyn, functionName: 'testSyn');
+         registerFunction(testAsyn);
+      }
+   
+      /// for synchronous invocation
+      String testSyn(dynamic msg) {
+         return "$msg［syn call］";
+      }
+      
+      /// for asynchronous invocation
+      @pragma('vm:entry-point')
+      void testAsyn(dynamic msg, CompletionHandler handler) {
+         handler.complete("$msg [ asyn call]");
+      }
+   }
+   ```
+
 
 2. 添加API类实例到DWebViewController
 
@@ -87,7 +104,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
    ...
    late final DWebViewController _controller;
    ...
-   _controller.addJavaScriptObject(JsApi(), null);
+   _controller.addJavaScriptObject(JsApi());
    ```
 
 3. 在 JavaScript 中调用 Dart API ,并注册一个 JavaScript API 供原生调用.
@@ -135,7 +152,7 @@ DSBridge for Flutter 基于 Flutter官方的 [webview_flutter](https://pub.dev/p
 
 ## Dart API 签名
 
-为了兼容Android&iOS，我们约定Dart API 签名，**注意，如果API签名不合法，则不会被调用**！签名如下：
+为了兼容Android & iOS & HarmonyOS，我们约定Dart API 签名，**注意，如果API签名不合法，则不会被调用**！签名如下：
 
 1. 同步API.
 
@@ -196,7 +213,7 @@ DSBridge 已经实现了 JavaScript 的对话框函数(alert/confirm/prompt)，�
 
 在 Dart 中我们把实现了供 JavaScript 调用的 API 类的实例称为 **Dart API object**.
 
-##### `DWebViewController.addJavaScriptObject(JavaScriptNamespaceInterface? object, String? namespace)`
+##### `DWebViewController.addJavaScriptObject(JavaScriptNamespaceInterface object, {String? namespace})`
 
 Dart API object到DWebViewController，并为它指定一个命名空间。然后，在 JavaScript 中就可以通过`bridge.call("namespace.api",...)`来调用Dart API object中的原生API了。
 
@@ -223,7 +240,7 @@ class JsEchoApi extends JavaScriptNamespaceInterface {
    }
 }
 //namespace is "echo"
-controller.addJavaScriptObject(JsEchoApi(), 'echo');
+controller.addJavaScriptObject(JsEchoApi(), namespace: 'echo');
 ```
 
 In JavaScript

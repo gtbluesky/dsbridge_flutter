@@ -101,13 +101,13 @@ class DWebViewController extends WebViewController {
     if (jsb == null) {
       _printDebugInfo(
           "Js bridge called, but can't find a corresponded JavascriptInterface object, please check your code!");
-      return json.encode(ret);
+      return jsonEncode(ret);
     }
     dynamic arg;
     String? callback;
     if (argStr != null && argStr.isNotEmpty) {
       try {
-        Map<String, dynamic> args = json.decode(argStr);
+        Map<String, dynamic> args = jsonDecode(argStr);
         if (args.containsKey('_dscbstub')) {
           callback = args['_dscbstub'];
         }
@@ -117,7 +117,7 @@ class DWebViewController extends WebViewController {
       } catch (e) {
         _printDebugInfo(
             'The argument of "$methodName" must be a JSON object string!');
-        return json.encode(ret);
+        return jsonEncode(ret);
       }
     }
     bool asyn = false;
@@ -125,7 +125,7 @@ class DWebViewController extends WebViewController {
     if (method == null) {
       _printDebugInfo(
           'Not find method "$methodName" implementation! please check if the  signature or namespace of the method is right.');
-      return json.encode(ret);
+      return jsonEncode(ret);
     }
     if (method.runtimeType.toString().contains((#CompletionHandler).name)) {
       asyn = true;
@@ -142,7 +142,7 @@ class DWebViewController extends WebViewController {
       _printDebugInfo(
           'Call failed：The parameter of "$methodName" in Dart is invalid.');
     }
-    return json.encode(ret);
+    return jsonEncode(ret);
   }
 
   List<String> _parseNamespace(String method) {
@@ -258,17 +258,14 @@ class DWebViewController extends WebViewController {
   }
 
   void _addInternalJavaScriptObject() {
-    addJavaScriptObject(_InnerJavaScriptNamespaceInterface(this), '_dsb');
+    addJavaScriptObject(_InnerJavaScriptNamespaceInterface(this), namespace: '_dsb');
   }
 
   /// Add a dart object which implemented the javascript interfaces to dsBridge with namespace.
   /// Remove the object using {@link #removeJavascriptObject(String) removeJavascriptObject(String)}
   void addJavaScriptObject(
-      JavaScriptNamespaceInterface? object, String? namespace) {
+      JavaScriptNamespaceInterface object, {String? namespace}) {
     namespace ??= '';
-    if (object == null) {
-      return;
-    }
     _javaScriptNamespaceInterfaces[namespace] = object;
   }
 
@@ -377,6 +374,7 @@ class _InnerJavaScriptNamespaceInterface extends JavaScriptNamespaceInterface {
     registerFunction(returnValue);
   }
 
+  @pragma('vm:entry-point')
   bool hasNativeMethod(dynamic args) {
     if (args == null || args.isEmpty) {
       return false;
@@ -404,18 +402,22 @@ class _InnerJavaScriptNamespaceInterface extends JavaScriptNamespaceInterface {
     return false;
   }
 
+  @pragma('vm:entry-point')
   void closePage(dynamic args) {
     controller.javaScriptCloseWindowListener?.call();
   }
 
+  @pragma('vm:entry-point')
   void disableJavascriptDialogBlock(dynamic args) {
     controller._alertBoxBlock = !args['disable'];
   }
 
+  @pragma('vm:entry-point')
   void dsinit(dynamic args) {
     controller._dispatchStartupQueue();
   }
 
+  @pragma('vm:entry-point')
   void returnValue(dynamic args) {
     int id = args['id'];
     bool isCompleted = args['complete'];
@@ -452,7 +454,7 @@ class _InnerCompletionHandler extends CompletionHandler {
     if (cb == null) {
       return;
     }
-    var script = '$cb(${json.encode(ret)}.data);';
+    var script = '$cb(${jsonEncode(ret)}.data);';
     if (complete) {
       script += 'delete window.$cb';
     }
@@ -467,7 +469,7 @@ class _CallInfo {
 
   _CallInfo(String handlerName, int id, List? args) {
     args ??= [];
-    data = json.encode(args);
+    data = jsonEncode(args);
     callbackId = id;
     method = handlerName;
   }
@@ -479,6 +481,6 @@ class _CallInfo {
       'callbackId': callbackId,
       'data': data,
     };
-    return json.encode(jsonMap);
+    return jsonEncode(jsonMap);
   }
 }

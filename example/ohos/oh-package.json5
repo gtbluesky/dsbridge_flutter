@@ -6,11 +6,16 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {},
+  "dependencies": {
+    "@ohos/flutter_ohos": "file:./har/flutter.har"
+  },
   "devDependencies": {
     "@ohos/hypium": "1.0.6"
   },
   "overrides": {
-    "@ohos/flutter_ohos": "file:./har/flutter.har"
+    "@ohos/flutter_ohos": "file:./har/flutter.har",
+    "fluttertoast": "file:./har/fluttertoast.har",
+    "webview_flutter_ohos": "file:./har/webview_flutter_ohos.har",
+    "@ohos/flutter_module": "file:./entry"
   }
 }

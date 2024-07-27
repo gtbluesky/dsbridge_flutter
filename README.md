@@ -20,15 +20,16 @@ DSBridge for Flutter is based on Flutter official [webview_flutter](https://pub.
 
 ## Features
 
-1. The three ends of Android, IOS and JavaScript are easy to use, light and powerful, secure and strong
-2. Both synchronous and asynchronous calls are supported
-3. Support **API Object**, which centrally implements APIs in a Dart Class or a JavaScript object
-4. Support API namespace
-5. Support debug mode
-6. Support the test of whether API exists
-7. Support **Progress Callback**: one call, multiple returns
-8. Support event listener for JavaScript to close the page
-9. Support Modal popup box for JavaScript
+1. Supports `Android`, `iOS`, and `HarmonyOS`, covering all mobile platforms
+2. Easy to use, light and powerful, secure and strong
+3. Both synchronous and asynchronous calls are supported
+4. Support **API Object**, which centrally implements APIs in a Dart Class or a JavaScript object
+5. Support API namespace
+6. Support debug mode
+7. Support the test of whether API exists
+8. Support **Progress Callback**: one call, multiple returns
+9. Support event listener for JavaScript to close the page
+10. Support Modal popup box for JavaScript
 
 ## Installation
 
@@ -72,7 +73,30 @@ To use dsBridge in your own project:
    }
    ```
 
-   Dart APIs must be registered with registerFunction in register function.
+   - Dart APIs must be registered with registerFunction in register function.
+   - Note that if you use the `--obfuscate` option to obfuscate Dart code when building your application, you need to annotate the function with `@pragma('vm:entry-point')` or use the second parameter `functionName` of `registerFunction` to specify the function name.
+   ```dart
+   import 'package:dsbridge_flutter/dsbridge_flutter.dart';
+
+   class JsApi extends JavaScriptNamespaceInterface {
+      @override
+      void register() {
+         registerFunction(testSyn, functionName: 'testSyn');
+         registerFunction(testAsyn);
+      }
+   
+      /// for synchronous invocation
+      String testSyn(dynamic msg) {
+         return "$msg［syn call］";
+      }
+      
+      /// for asynchronous invocation
+      @pragma('vm:entry-point')
+      void testAsyn(dynamic msg, CompletionHandler handler) {
+         handler.complete("$msg [ asyn call]");
+      }
+   }
+   ```
 
 2. Add API object to DWebViewController
 
@@ -81,7 +105,7 @@ To use dsBridge in your own project:
    ...
    late final DWebViewController _controller;
    ...
-   _controller.addJavaScriptObject(JsApi(), null);
+   _controller.addJavaScriptObject(JsApi());
    ```
 
 3. Call Dart API in JavaScript, and register JavaScript API.
@@ -129,7 +153,7 @@ To use dsBridge in your own project:
 
 ## Dart API signature
 
-In order to be compatible with Android&iOS, we make the following convention on Dart API signature:
+In order to be compatible with Android & iOS & HarmonyOS, we make the following convention on Dart API signature:
 
 1. For synchronous API.
 
@@ -189,7 +213,7 @@ For JavaScript popup box functions (alert/confirm/prompt), DSBridge has implemen
 
 In Dart, the object that implements the JavaScript interfaces is called **Dart API object**.
 
-##### `DWebViewController.addJavaScriptObject(JavaScriptNamespaceInterface? object, String? namespace)`
+##### `DWebViewController.addJavaScriptObject(JavaScriptNamespaceInterface object, {String? namespace})`
 
 Add the Dart API object with supplied namespace into DWebViewController. The JavaScript can then call Dart APIs with `bridge.call("namespace.api",...)`.
 
@@ -216,7 +240,7 @@ class JsEchoApi extends JavaScriptNamespaceInterface {
    }
 }
 //namespace is "echo"
-controller.addJavaScriptObject(JsEchoApi(), 'echo');
+controller.addJavaScriptObject(JsEchoApi(), namespace: 'echo');
 ```
 
 In JavaScript

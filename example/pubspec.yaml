@@ -32,8 +32,8 @@ dependencies:
     sdk: flutter
   dsbridge_flutter:
     path: ../
-  webview_flutter: ^4.4.4
-  fluttertoast: ^8.2.2
+  webview_flutter: ^4.8.0
+  fluttertoast: ^8.2.6
 
 
   # The following adds the Cupertino Icons font to your application.

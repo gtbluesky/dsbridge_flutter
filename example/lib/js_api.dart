@@ -5,7 +5,7 @@ import 'package:dsbridge_flutter/dsbridge_flutter.dart';
 class JsApi extends JavaScriptNamespaceInterface {
   @override
   void register() {
-    registerFunction(testSyn);
+    registerFunction(testSyn, functionName: 'testSyn');
     registerFunction(testAsyn);
     registerFunction(testNoArgSyn);
     registerFunction(testNoArgAsyn);
@@ -17,18 +17,22 @@ class JsApi extends JavaScriptNamespaceInterface {
     return "$msg［syn call］";
   }
 
+  @pragma('vm:entry-point')
   void testAsyn(dynamic msg, CompletionHandler handler) {
     handler.complete("$msg [ asyn call]");
   }
 
+  @pragma('vm:entry-point')
   String testNoArgSyn(dynamic arg) {
     return "testNoArgSyn called [ syn call]";
   }
 
+  @pragma('vm:entry-point')
   void testNoArgAsyn(dynamic arg, CompletionHandler handler) {
     handler.complete("testNoArgAsyn called [ asyn call]");
   }
 
+  @pragma('vm:entry-point')
   void callProgress(dynamic args, CompletionHandler handler) {
     var i = 10;
     final timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -49,10 +53,12 @@ class JsEchoApi extends JavaScriptNamespaceInterface {
     registerFunction(asyn);
   }
 
+  @pragma('vm:entry-point')
   dynamic syn(dynamic args) {
     return args;
   }
 
+  @pragma('vm:entry-point')
   void asyn(dynamic args, CompletionHandler handler) {
     handler.complete(args);
   }
