@@ -38,6 +38,8 @@ class DWebViewController extends WebViewController {
   Future<String> Function(String message, String? defaultText)?
       javaScriptPromptCallback;
 
+  void Function(String)? exceptionExportInjecter;
+
   DWebViewController({
     void Function(WebViewPermissionRequest request)? onPermissionRequest,
   }) : this.fromPlatformCreationParams(
@@ -289,6 +291,10 @@ class DWebViewController extends WebViewController {
     _context = context;
   }
 
+  void setExceptionExportInjecter(void Function(String) injecter) {
+    exceptionExportInjecter = injecter;
+  }
+
   void _dispatchStartupQueue() {
     if (_callInfoList == null) {
       return;
@@ -299,8 +305,13 @@ class DWebViewController extends WebViewController {
     _callInfoList = null;
   }
 
-  void _dispatchJavaScriptCall(_CallInfo info) {
-    runJavaScript('window._handleMessageFromNative(${info.toString()})');
+  Future<void> _dispatchJavaScriptCall(_CallInfo info) async {
+    try {
+      await runJavaScript(
+          'window._handleMessageFromNative(${info.toString()})');
+    } catch (e) {
+      exceptionExportInjecter?.call(e.toString());
+    }
   }
 
   void callHandler(String method, {List? args, OnReturnValue? handler}) {
@@ -454,7 +465,7 @@ class _InnerCompletionHandler extends CompletionHandler {
     completeProcess(value, false);
   }
 
-  void completeProcess(dynamic retValue, bool complete) {
+  Future<void> completeProcess(dynamic retValue, bool complete) async {
     final ret = {'code': 0, 'data': retValue};
     if (cb == null) {
       return;
@@ -463,7 +474,11 @@ class _InnerCompletionHandler extends CompletionHandler {
     if (complete) {
       script += 'delete window.$cb';
     }
-    controller.runJavaScript(script);
+    try {
+      await controller.runJavaScript(script);
+    } catch (e) {
+      controller.exceptionExportInjecter?.call(e.toString());
+    }
   }
 }
 

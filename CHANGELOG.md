@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Catch exceptions thrown when executing `runJavaScript`, and support to export the exception's infomation.
+
 ## 1.1.0
 
 * Fixes call failure when using the `--obfuscate` option to build.
